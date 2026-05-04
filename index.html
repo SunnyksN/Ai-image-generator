@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header-container">
+            <h1>🎨 AI Image Generator</h1>
+            <p>Create stunning images powered by Stable Diffusion</p>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Column - Input Section -->
+            <div class="left-column">
+                <div class="input-section">
+                    <!-- Prompt Input -->
+                    <div class="form-group">
+                        <label for="prompt" class="section-title">📝 Prompt</label>
+                        <textarea 
+                            id="prompt" 
+                            class="input-field" 
+                            placeholder="A beautiful sunset over mountains, oil painting style"
+                            rows="4"
+                        ></textarea>
+                    </div>
+
+                    <!-- Style Selection -->
+                    <div class="form-group">
+                        <label for="style" class="section-title">🎭 Style</label>
+                        <select id="style" class="input-field">
+                            <option value="Anime">Anime</option>
+                            <option value="Cartoon">Cartoon</option>
+                            <option value="Sketch">Sketch</option>
+                            <option value="Cinematic">Cinematic</option>
+                            <option value="Photorealistic">Photorealistic</option>
+                            <option value="Oil Painting">Oil Painting</option>
+                            <option value="Watercolor">Watercolor</option>
+                        </select>
+                    </div>
+
+                    <!-- Negative Prompt -->
+                    <div class="form-group">
+                        <label for="negativePrompt" class="section-title">⛔ Negative Prompt</label>
+                        <textarea 
+                            id="negativePrompt" 
+                            class="input-field" 
+                            value="blurry, low quality, bad anatomy, extra fingers, watermark"
+                            rows="3"
+                        >blurry, low quality, bad anatomy, extra fingers, watermark</textarea>
+                    </div>
+
+                    <!-- Advanced Settings -->
+                    <div class="form-group">
+                        <label class="section-title">🎛️ Advanced Settings</label>
+                        
+                        <div class="slider-group">
+                            <label for="guidanceScale">Guidance Scale: <span id="guidanceValue">7.5</span></label>
+                            <input 
+                                type="range" 
+                                id="guidanceScale" 
+                                class="slider" 
+                                min="1" 
+                                max="20" 
+                                step="0.5" 
+                                value="7.5"
+                            >
+                            <small>Higher values stick closer to the prompt</small>
+                        </div>
+
+                        <div class="slider-group">
+                            <label for="steps">Quality Steps: <span id="stepsValue">50</span></label>
+                            <input 
+                                type="range" 
+                                id="steps" 
+                                class="slider" 
+                                min="20" 
+                                max="100" 
+                                step="10" 
+                                value="50"
+                            >
+                            <small>More steps = better quality but slower</small>
+                        </div>
+                    </div>
+
+                    <!-- Generate Button -->
+                    <button id="generateBtn" class="generate-btn">
+                        <span class="btn-text">✨ Generate Image</span>
+                        <span class="btn-loader" style="display: none;">⏳ Generating...</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Column - Output Section -->
+            <div class="right-column">
+                <div class="output-section">
+                    <div id="infoBox" class="info-box">
+                        <p>👈 Enter a prompt on the left to get started!</p>
+                    </div>
+
+                    <div id="resultContainer" class="result-container" style="display: none;">
+                        <img id="generatedImage" class="generated-image" src="" alt="Generated Image">
+                        <p class="image-caption">✅ Image generated successfully</p>
+                        
+                        <button id="downloadBtn" class="download-btn">
+                            ⬇️ Download Image
+                        </button>
+                    </div>
+
+                    <div id="errorContainer" style="display: none;"></div>
+                    <div id="loadingContainer" style="display: none;" class="loading-container">
+                        <div class="spinner"></div>
+                        <p>🔄 Generating your image... This may take a moment</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- History Section -->
+        <div id="historySection" style="display: none;" class="history-section">
+            <hr>
+            <h2>📸 Generation History</h2>
+            <div id="historyGrid" class="history-grid"></div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Powered by Stable Diffusion XL • AI Image Generator v1.0</p>
+            <p style="font-size: 0.85rem;">Create beautiful images with AI • Fully responsive design</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
